@@ -25,13 +25,14 @@
 }
 
 // Init methods.
-- (id)initWithTitle:(NSString *)twTitle message:(NSString *)twMessage withStyle:(TWNotificationStyle)twStyle inView:(UIView *)userView hideAfter:(float)twTimer
+- (id)initWithTitle:(NSString *)twTitle message:(NSString *)twMessage alignment:(TWAlignment)alignment withStyle:(TWNotificationStyle)twStyle orUseACustomColor:(UIColor *)color inView:(UIView *)userView hideAfter:(float)twTimer
 {
     // Self set frame.
-    [self initWithFrame:CGRectMake(0, -20, 320, 20)];
+    self=[self initWithFrame:CGRectMake(0, -20, 320, 20)];
+
     self = [super init];
-    
-    // Let know the message type.
+   
+// Let know the message type.
     if (twStyle == TWNotificationStyleMessage) {
         [_notificationText setBackgroundColor:[UIColor blackColor]];
     }else if (twStyle == TWNotificationStyleSuccess) {
@@ -39,7 +40,17 @@
     }else if (twStyle == TWNotificationStyleError) {
         [_notificationText setBackgroundColor:[UIColor colorWithRed:0.666 green:0.000 blue:0.007 alpha:1.000]];
     }
+    if (color!=nil) {
+        [_notificationText setBackgroundColor:color];
+    }
     
+    if (alignment == Center) {
+        [_notificationText setTextAlignment:Center];
+    }else if (alignment == Left) {
+        [_notificationText setTextAlignment:Left];
+              }else if (alignment == Right) {
+                  [_notificationText setTextAlignment:Right];
+                   }    
     // Set user text to label.
     [_notificationText setText:[NSString stringWithFormat:@" %@: %@", twTitle, twMessage]];
     
@@ -63,12 +74,7 @@
 {
     // show status bar.
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    [self release];
 }
 
-- (void)dealloc
-{
-    [_notificationText release];
-    [super dealloc];
-}
+
 @end

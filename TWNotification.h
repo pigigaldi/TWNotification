@@ -13,16 +13,26 @@ enum {
 	TWNotificationStyleMessage  = 1,
     TWNotificationStyleError    = 2,
 };
+
+
 typedef NSUInteger TWNotificationStyle;
 
-@interface TWNotification : UIView {
-@private
+enum {
+	Center  = 1,
+	Left  = 0,
+    Right    = 2,
+};
+typedef NSUInteger TWAlignment;
+
+
+@interface TWNotification :  UIView{
+
     
     // Declare UILabel for notification text.
     UILabel *_notificationText;
 }
 // Init mothods.
-- (id)initWithTitle:(NSString*)twTitle message:(NSString*)twMessage withStyle:(TWNotificationStyle)twStyle inView:(UIView*)userView hideAfter:(float)twTimer;
+- (id)initWithTitle:(NSString *)twTitle message:(NSString *)twMessage alignment:(TWAlignment)alignment withStyle:(TWNotificationStyle)twStyle orUseACustomColor:(UIColor *)color inView:(UIView *)userView hideAfter:(float)twTimer;
 - (void)showAndHideAfter:(float)timeToHide;
 - (void)close;
 @end
