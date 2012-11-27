@@ -1,6 +1,6 @@
 # TWNotification
 
-# This is a fork of the original by DJKira 
+# This is a fork of the original by DjKira 
 I have added the possibility of choose the text alignment (left,center,right) and the color of the notification banner
 
 Forked by MPow 
